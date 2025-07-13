@@ -1,0 +1,15 @@
+{
+    "recommendations": [
+        "codezombiech.gitignore",
+        "njpwerner.autodocstring",
+        "ms-vscode.hexeditor",
+        "stackbreak.comment-divider",
+        "tintinweb.vscode-inline-bookmarks",
+        "visualstudioexptteam.vscodeintellicode",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "ms-python.vscode-pylance",
+        "kevinrose.vsc-python-indent",
+        "frhtylcn.pythonsnippets"
+    ]
+}

@@ -1,0 +1,156 @@
+{
+  "cmake.sourceDirectory": "/work/dev/osw-3d-building/src",
+  "files.associations": {
+    "ostream": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "cmath": "cpp",
+    "csetjmp": "cpp",
+    "csignal": "cpp",
+    "cstdarg": "cpp",
+    "cstddef": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "cstring": "cpp",
+    "ctime": "cpp",
+    "cwchar": "cpp",
+    "cwctype": "cpp",
+    "*.ipp": "cpp",
+    "array": "cpp",
+    "atomic": "cpp",
+    "bit": "cpp",
+    "*.tcc": "cpp",
+    "bitset": "cpp",
+    "chrono": "cpp",
+    "complex": "cpp",
+    "condition_variable": "cpp",
+    "cstdint": "cpp",
+    "deque": "cpp",
+    "list": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "unordered_map": "cpp",
+    "vector": "cpp",
+    "exception": "cpp",
+    "algorithm": "cpp",
+    "functional": "cpp",
+    "iterator": "cpp",
+    "memory": "cpp",
+    "memory_resource": "cpp",
+    "numeric": "cpp",
+    "optional": "cpp",
+    "random": "cpp",
+    "ratio": "cpp",
+    "source_location": "cpp",
+    "string": "cpp",
+    "string_view": "cpp",
+    "system_error": "cpp",
+    "tuple": "cpp",
+    "type_traits": "cpp",
+    "utility": "cpp",
+    "fstream": "cpp",
+    "initializer_list": "cpp",
+    "iomanip": "cpp",
+    "iosfwd": "cpp",
+    "iostream": "cpp",
+    "istream": "cpp",
+    "limits": "cpp",
+    "mutex": "cpp",
+    "new": "cpp",
+    "sstream": "cpp",
+    "stdexcept": "cpp",
+    "streambuf": "cpp",
+    "thread": "cpp",
+    "cinttypes": "cpp",
+    "typeindex": "cpp",
+    "typeinfo": "cpp",
+    "variant": "cpp"
+  },
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "files.autoSaveDelay": 100,
+  // "sonarlint.testFilePattern": "{/usr/local/lib/spatial/**, /usr/lib/spatial/**, deps/**, /usr/include/**}",
+  "C_Cpp.errorSquiggles": "disabled",
+  "C_Cpp.autoAddFileAssociations": false,
+  // "C_Cpp.intelliSenseCacheSize": 0,
+  "cmake.generator": "Unix Makefiles",
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": "on"
+  },
+  "spellright.language": [],
+  "spellright.documentTypes": [
+    "latex"
+  ],
+  "editor.fontLigatures": false,
+  // "editor.defaultFormatter": "ms-vscode.cpptools",
+  "editor.formatOnType": true,
+  // "C_Cpp.formatting": "clangFormat",
+  "diffEditor.wordWrap": "off",
+  // "[c]": {
+  //   "editor.defaultFormatter": "xaver.clang-format",
+  //   "editor.quickSuggestions": {
+  //     "comments": "on",
+  //     "strings": "on",
+  //     "other": "on"
+  //   }
+  // },
+  // "[cpp]": {
+  //   "editor.defaultFormatter": "ms-vscode.cpptools",
+  //   "editor.quickSuggestions": {
+  //     "comments": "on",
+  //     "strings": "on",
+  //     "other": "on"
+  //   }
+  // },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  // "clang-format.executable": "/root/.vscode-server/extensions/ms-vscode.cpptools-1.22.11-linux-x64/LLVM/bin/clang-format",
+  "terminal.integrated.cursorStyle": "line",
+  // "workbench.colorTheme": "Visual Studio Dark - C++",
+  // "workbench.preferredDarkColorTheme": "Visual Studio Dark - C++",
+  // "clangd.path": "clangd",
+  // "[cmake]": {
+  //   "editor.defaultFormatter": "cheshirekow.cmake-format"
+  // },
+  // "SQL-Formatter-VSCode.dialect": "postgresql",
+  "SQL-Formatter-VSCode.linesBetweenQueries": 2,
+  "terminal.integrated.copyOnSelection": true,
+  "workbench.editor.enablePreview": false,
+  "cmake.configureSettings": {},
+  "workbench.editorLargeFileConfirmation": 200,
+  "editor.quickSuggestionsDelay": 0,
+  "editor.rename.enablePreview": false,
+  "notebook.diff.enablePreview": false,
+  "inline-bookmarks.view.showVisibleFilesOnly": true,
+  "workbench.hover.delay": 500,
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  // "C_Cpp.default.compilerPath": "/usr/bin/g++",
+  "editor.hover.delay": 0,
+  // "C_Cpp.intelliSenseEngine": "default",
+  "editor.minimap.enabled": true,
+  "editor.snippetSuggestions": "inline",
+  "editor.suggest.showVariables": true,
+  "[sql]": {
+    "editor.defaultFormatter": "bradymholt.pgformatter"
+  },
+  "git.ignoreLimitWarning": true,
+  // "[python]": {
+  //   "editor.formatOnType": true,
+  //   "editor.defaultFormatter": "ms-python.black-formatter"
+  // },
+  "black-formatter.args": [
+    "--line-length",
+    "200"
+  ]
+}

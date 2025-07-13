@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  ubuntu-dev-base:
+    image: ubuntu-dev-base:v0.2.0
+    container_name: ubuntu-dev-base-ai
+    user: root
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - d:/data/:/work/data
+      - d:/dev/:/work/dev
+    network_mode: host
+    privileged: true
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: "nvidia"
+              count: "all"
+              capabilities: ["gpu"]
+# docker-compose -f ./ubuntu-dev-base.docker-compose.yml up -d
+
+

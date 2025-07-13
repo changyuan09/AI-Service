@@ -1,0 +1,102 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "configure 3d",
+            "command": "/buildEntrypoint.sh configure",
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "3d configure task"
+        },
+        {
+            "type": "shell",
+            "label": "build 3d",
+            "command": "/buildEntrypoint.sh compile",
+            "group": {
+                "isDefault": true,
+                "kind": "build"
+            },
+            "problemMatcher": [],
+            "detail": "3d build task",
+        },
+        {
+            "type": "shell",
+            "label": "install 3d",
+            "command": "/buildEntrypoint.sh install",
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "3d install task",
+        },
+        {
+            "type": "shell",
+            "label": "run test",
+            "command": "/buildEntrypoint.sh test",
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "detail": "run all tests"
+        },
+        {
+            "type": "shell",
+            "label": "run failed test",
+            "command": "/buildEntrypoint.sh test_failed",
+            "problemMatcher": [],
+            "group": "test",
+            "detail": "run failed tests"
+        },
+        {
+            "type": "shell",
+            "label": "build cpp utils",
+            "command": "/usr/bin/g++",
+            "args": [
+                "-fPIC",
+                "-shared",
+                "-I",
+                "/opt/transwarp/spatial/build/pgis_3d/extension/include",
+                "-I",
+                "/usr/local/lib/spatial/fbx-2020.3.2/include",
+                "-I",
+                "/usr/lib/spatial/postgresql-10/include/server",
+                "-I",
+                "/usr/local/lib/spatial/boost-1.80/include",
+                "-L",
+                "/usr/local/lib/spatial/fbx-2020.3.2/lib/gcc/x64/release",
+                "-l",
+                "fbxsdk",
+                "-L",
+                "/usr/local/lib/spatial/boost-1.80/lib",
+                "-l",
+                "boost_filesystem",
+                "/opt/transwarp/spatial/build/pgis_3d/extension/fbx_utils.cpp",
+                "/opt/transwarp/spatial/build/pgis_3d/extension/io_utils.cpp",
+                "-o",
+                "/usr/lib/spatial/postgresql-10/lib/libcpputils.so",
+                "-g"
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "run pg_regress",
+            "detail": "run extension pg_regress tests",
+            "command": "ctest",
+            "args": [
+                "-R",
+                "extension-pg_regress"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "dependsOn": [
+                "install 3d"
+            ]
+        },
+    ]
+}

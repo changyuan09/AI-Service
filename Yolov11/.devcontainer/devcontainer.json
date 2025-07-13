@@ -1,0 +1,81 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/cpp
+{
+    "name": "osw-ai-env002",
+    "image": "oyoyogg/osw-ai-env:v0.0.2",
+    "runArgs": [
+        "--privileged",
+        "--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined",
+        "--network=host",
+        "--memory=24gb",
+        "--cpu-shares=60",
+        "--name=osw-ai-env002",
+        // "--volume=/data/service/oyoyogg/data/:/work/data",
+        // "--volume=/data/service/oyoyogg/dev/:/work/dev",
+        // "--volume=/data/service/oyoyogg/dev/vscode:/root/.vscode-server",
+        // "--volume=/data/service/oyoyogg/dev/docker-maven-repository:/root/.m2",
+        "--volume=e:/data/:/work/data",
+        "--volume=e:/dev/:/work/dev",
+        "--volume=e:/dev/vscode:/root/.vscode-server",
+        "--volume=e:/dev/docker-maven-repository:/root/.m2",
+        "--runtime=nvidia",
+        "--tty",
+        "-u=root",
+        "--gpus=all",
+        "--shm-size=14gb"
+    ],
+    "containerEnv": {
+        "NVIDIA_VISIBLE_DEVICES": "all"
+    },
+    "hostRequirements": {
+        "gpu": true
+    },
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ],
+    "workspaceMount": "source=${localWorkspaceFolder},target=/work/dev/osw-ai-server,type=bind,consistency=cached",
+    "workspaceFolder": "/work/dev/osw-ai-server",
+    "shutdownAction": "none",
+    "customizations": {
+        "vscode": {
+            // Set *default* container specific settings.json values on container create.
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash",
+                // "C_Cpp.default.cppStandard": "c++20",
+                // "C_Cpp.default.cStandard": "c17",
+                // "C_Cpp.default.browse.databaseFilename": "${workspaceFolder}/.vscode/.browse.c_cpp.db"
+            },
+            // Add the IDs of extensions you want installed when the container is created.
+            "extensions": [
+                "foxundermoon.shell-format",
+                "redhat.vscode-yaml",
+                "ms-azuretools.vscode-docker",
+                "ms-vscode.cmake-tools",
+                "hbenl.vscode-test-explorer",
+                "cschlosser.doxdocgen",
+                "codezombiech.gitignore",
+                "yzhang.markdown-all-in-one",
+                "SonarSource.sonarlint-vscode",
+                "DanielLin.auto-header",
+                "kevinkyang.auto-comment-blocks",
+                "ms-vscode.hexeditor",
+                "tal7aouy.rainbow-bracket",
+                "aaron-bond.better-comments",
+                "streetsidesoftware.code-spell-checker",
+                "stackbreak.comment-divider",
+                "tintinweb.vscode-inline-bookmarks",
+                "ms-python.python",
+                "ms-python.debugpy",
+                "ms-python.vscode-pylance",
+                "KevinRose.vsc-python-indent",
+                "frhtylcn.pythonsnippets"
+            ]
+        }
+    },
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    "forwardPorts": [
+        8888
+    ]
+}

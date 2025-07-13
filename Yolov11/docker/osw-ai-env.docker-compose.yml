@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  osw-ai-env-v001:
+    image: oyoyogg/osw-ai-env:v0.0.1
+    container_name: osw-ai-env-v001
+    user: root
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - d:/data/:/work/data
+      - d:/dev/:/work/dev
+    # network_mode: host
+    ports: 
+      - "8888:8888"  # 映射主机的 8888 端口到容器的 8888 端口
+    privileged: true
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: "nvidia"
+              count: "all"
+              capabilities: ["gpu"]
+    
+# docker-compose -f ./osw-ai-env.docker-compose.yml up -d
