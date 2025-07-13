@@ -1,52 +1,52 @@
-# AI-Container 使用说明  
+# AI-Container Instruction  
 
-## 该源代码目前在 /home/ubuntu/jack/LLM_Container AWS EC2 服务器上, docker image名称为my-ai-container  
+## Source Code is Located at /home/ubuntu/jack/LLM_Container AWS EC2 Server, the docker image is named as "my-ai-container"  
 
-## 一、简介
-本仓库提供了一份可打包成 Docker 容器的 AI 服务模板，包含：
+## 1. Brief
+This container offers a packagable docker image file which includes a complete AI-Service tool module including:  
 
-- **Dockerfile**：构建镜像所需指令  
-- **requirements.txt**：所需 Python 第三方依赖  
-- **start_services.sh**：启动服务的 Bash 脚本  
-- **service_controller.py**：调度 Qwen3.0 与 Yolov11 模型的主控脚本  
+- **Dockerfile**：Docker Image Construction File  
+- **requirements.txt**：Third party dependency python scripts  
+- **start_services.sh**：bash script to start the docker image   
+- **service_controller.py**：Main service script that makes use of the Qwen and Yolo model folders  
 - **llm_models/**  
-  - `Qwen3.0/`：Qwen3.0 模型及工具包  
-  - `Yolov11/`：Yolov11 模型及工具包  
-- **logs/**：每次运行日志（包括报错、调试信息）  
+  - `Qwen3.0/`：Qwen3.0 model and its tool box    
+  - `Yolov11/`：Yolov11 model and its tool box    
+- **logs/**：Contains execution logs and errors   
 - **configs/**  
-  - `Config_qwen.yaml`：Qwen3.0 参数配置文件  
+  - `Config_qwen.yaml`：Qwen3.0 configuration files    
   
-  **备注：如果在运行前遇到了conflict有可能是docker容器已在运行的冲突，需要先docker rm my-ai-container再运行接下来的服务器启动容器命令
+  **Note: if there is a conflict error when running the docker image, it is possible that this image container is already running, and thus please docker rm my-ai-container and then start the image again  
 
 ---
 
-## 二、目录结构
+## 2. File Structure  
 
-容器目录  
+Container Structure    
 
-![结构图1](images/2.png)  
+![Structure 1](images/2.png)  
 
-qwen外部权重目录  
+qwen weights structure    
 
-![结构图2](images/1.png)
-
----
-
-## 三、配置说明
-
-1. **模型权重目录**  
-   - 本地路径：`/home/ubuntu/jack/qwen3_lora_merged`  
-   - 容器内路径：`/app/qwen_llm/qwen3_lora_merged`  
-   - 如需更换路径，只需替换主机端路径，容器内部路径保持不变。
-
-2. **端口映射**  
-   - 容器内服务监听在 `5000` 端口，使用 `-p 5000:5000` 将其映射至主机。
+![structure 2](images/1.png)
 
 ---
 
-## 四、快速启动命令
+## 3. Configurations  
 
-### 1. 在服务器上启动容器
+1. **weights path**  
+   - local path：`/home/ubuntu/jack/qwen3_lora_merged`  
+   - container path：`/app/qwen_llm/qwen3_lora_merged`  
+   - if path changes are required, only change the local path but keep the container path unchanged  
+
+2. **port forwarding**  
+   - Uses port forwarding to link the host's port 5000 to the container port 5000  
+
+---
+
+## 4. Command Instructions for Starting up the Container  
+
+### 1. Start up the container on server
 
 ```bash
 docker run --gpus all 
@@ -55,36 +55,36 @@ docker run --gpus all
   --name my-ai-container 
   my-ai-container dispatch
 
-"/home/ubuntu/jack/qwen3_lora_merged"为qwen所需要的权重路径,该路线是ec2服务器上的路径, 该文件很大因此从外面挂上去，如果在另外一台服务器上需要指明新的权重路径  
-“/app/qwen_llm/qwen3_lora_merged”不变  
-“my-ai-container”为容器名字  
-“dispatch”为运行命令启动service_controller.py核心运行文件  
+"/home/ubuntu/jack/qwen3_lora_merged" this is the qwen weights path under the ec2 server, the weights are huge thus it is externally linked to a folder inside the container   
+“/app/qwen_llm/qwen3_lora_merged” keep this unchanged!!!  
+“my-ai-container” This is the container name  
+“dispatch” This is the main command that starts the core service start_services.sh of the entire AI-Image  
 
 
-### 2. 在本地测试文字接口
+### 2. Test on local machine "words based test"  
 curl -X POST 
   http://<SERVER_IP>:5000/predict 
   -H "Content-Type: application/json" 
   -d '{"question": "What is the minimal value of y=5*x^2 + 7x + 75"}'  
-<SERVER_IP>：替换为服务器公网 IP  
-question 字段可替换为任意提问内容  
+<SERVER_IP>：Replace it with your own server IP or company server IP  
+question Ask question using the prompt question:   
 
-### 3. 在本地测试图像识别（返回 JSON）
+### 3. Test on local machine "Image based test" return Json format answer
 curl -X POST 
   -F "image=@your_image.jpg" 
   http://<SERVER_IP>:5000/predict  
-上传 your_image.jpg，终端将打印识别结果（太阳能板检测信息、置信度、时间戳等） 
+upload your_image.jpg，Local terminal will return time stamp, confidence score and other information 
 
-### 4. 在本地测试图像识别（下载带标注图片）
+### 4. Test on local machine "Image based test" return model processed image
 curl -X POST 
   -F "image=@your_image.jpg" 
   http://<SERVER_IP>:5000/image 
   --output annotated_result.jpg  
-同样上传 your_image.jpg，在目前路径下会返回annotated_results.jpg(Yolo模型处理后的图片)  
+upload your_image.jpg，return a processed imnage called annotated_results.jpg which is processed by the yolo model
 
-### 5. 隐藏bonus 具体指令请查看start_services.sh 
-    qwen模型bonus:    
-    该容器内还包括data_prep.py, model_setup.py, 和train.py, 可以一键指令在容器内部训练自己的模型存储自己的权重（但是如果模型过大不推荐）  
+### 5. bonus other command shell prompts please refer to start_services.sh 
+    qwen bonus:    
+    the model in this container includes data_prep.py, model_setup.py, and train.py, it is allowed to train and deploy your own model inside the container but not recommended if the weights are too big  
   
-    Yolov11模型bonus:  
-    该容器可以训练gis数据库里指定的国家地图区域，识别每一个区域的太阳能板房屋信息并储存到后段sql库里, 具体信息请咨询zhang gang
+    Yolov11 bonus:  
+    There are instructions allowed to ask the yolo model to recognize and process GIS images and store information into a sql data base  
